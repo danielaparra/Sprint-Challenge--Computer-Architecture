@@ -158,5 +158,6 @@ void cpu_init(struct cpu *cpu)
   cpu->PC = 0;
   memset(cpu->ram, 0, 256);
   memset(cpu->registers, 0, 8);
+  memset(cpu->flags, 0, 8);
   cpu->registers[R7] = SP; 
 }
