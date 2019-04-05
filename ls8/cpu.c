@@ -31,10 +31,6 @@ void cpu_load(struct cpu *cpu, int argc, char** argv)
     if (line[0] == '#') {
       continue;
     }
-    // if (line == ) {
-    //   printf("empty line\n");
-    //   continue;
-    // }
     char *binary_string = strndup(line, 8);
     unsigned char binary_val = strtol(binary_string, NULL, 2);
     cpu->ram[address] = binary_val;
@@ -165,7 +161,6 @@ void cpu_run(struct cpu *cpu)
 	      break;
       case JEQ:
 	      if (cpu->flags[F7_EQUAL] == 1) {
-          //printf("equal!\n");
 		      cpu->PC = cpu->registers[operandA];
 	      } else {
 		      cpu->PC += 2;
@@ -173,7 +168,6 @@ void cpu_run(struct cpu *cpu)
 	      break;
       case JNE:
 	      if (cpu->flags[F7_EQUAL] == 0) {
-          //printf("not equal!\n");
 		      cpu->PC = cpu->registers[operandA];
 	      } else {
 		      cpu->PC += 2;
