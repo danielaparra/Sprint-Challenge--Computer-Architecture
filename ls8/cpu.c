@@ -27,14 +27,17 @@ void cpu_load(struct cpu *cpu, int argc, char** argv)
   int address = 0;
   while (fgets(line, 1024, fp) != NULL) {
     
+    // Convert string to a number
+    char *endchar;
+    unsigned char byte = strtol(line, &endchar, 2);
+    ;
 
-    if (line[0] == '#') {
+    // Ignore lines from which no numbers were read
+    if (endchar == line) {
       continue;
     }
-    char *binary_string = strndup(line, 8);
-    unsigned char binary_val = strtol(binary_string, NULL, 2);
-    cpu->ram[address] = binary_val;
-    free(binary_string);
+    
+    cpu->ram[address] = byte;
     address++;
   }
 
