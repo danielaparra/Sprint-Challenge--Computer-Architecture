@@ -35,7 +35,7 @@ enum alu_op {
 //ALU
 #define MUL  0b10100010
 #define ADD  0b10100000
-#define AND  0b10101000
+
 // ADDRESSES
 #define SP   0xF4
 #define R7   0b00000111
