@@ -54,6 +54,9 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
       cpu->registers[regA] += cpu->registers[regB];
       cpu->PC += 3;
       break;
+
+    case ALU_CMP:
+      break;
   }
 }
 
@@ -142,6 +145,9 @@ void cpu_run(struct cpu *cpu)
         cpu->PC = cpu_ram_read(cpu, cpu->registers[R7]);
         cpu->registers[R7]++;
         break;
+      case JMP:
+        cpu->PC = cpu->registers[operandA];
+	      break;
       case HLT:
         running = 0;
         cpu->PC++;
