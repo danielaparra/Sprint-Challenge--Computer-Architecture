@@ -56,6 +56,12 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
       break;
 
     case ALU_CMP:
+      if (regA == regB) {
+		    cpu->flags[F7_EQUAL] = 1;
+	    } else {
+		    cpu->flags[F7_EQUAL] = 0;
+	    }
+	    cpu->PC += 3;
       break;
   }
 }
@@ -125,6 +131,9 @@ void cpu_run(struct cpu *cpu)
         break;
       case ADD: 
         alu(cpu, ALU_ADD, operandA, operandB);
+        break;
+      case CMP:
+        alu(cpu, ALU_CMP, operandA, operandB);
         break;
       case POP:
         cpu->registers[operandA] = cpu_ram_read(cpu, cpu->registers[R7]);
