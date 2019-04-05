@@ -31,11 +31,15 @@ enum alu_op {
 #define RET  0b00010001
 #define CALL 0b01010000
 #define ST   0b10000100
+#define JEQ  0b01010101
+#define JMP  0b01010100
+#define JNE  0b01010110
 
 //ALU
 #define MUL  0b10100010
 #define ADD  0b10100000
-
+#define CMP  0b10100111
+#define AND  0b10101000
 // ADDRESSES
 #define SP   0xF4
 #define R7   0b00000111
