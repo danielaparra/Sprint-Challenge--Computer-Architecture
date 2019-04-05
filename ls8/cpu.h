@@ -3,11 +3,12 @@
 
 // Holds all information about the CPU
 struct cpu {
-  // TODO
   // PC
   unsigned char PC;
   // registers (array)
   unsigned char registers[8];
+  // flags (array)
+  unsigned char flags[8];
   // ram (array)
   unsigned char ram[256];
 };
@@ -43,6 +44,7 @@ enum alu_op {
 // ADDRESSES
 #define SP   0xF4
 #define R7   0b00000111
+#define F7_EQUAL 0b00000111
 
 // TODO: more instructions here. These can be used in cpu_run().
 
