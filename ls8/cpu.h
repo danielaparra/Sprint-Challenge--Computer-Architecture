@@ -49,6 +49,13 @@ enum alu_op {
 #define ADD  0b10100000
 #define CMP  0b10100111
 #define AND  0b10101000
+#define OR   0b10101010
+#define XOR  0b10101011
+#define NOT  0b01101001
+#define SHL  0b10101100
+#define SHR  0b10101101
+#define MOD  0b10100100
+
 // ADDRESSES
 #define SP   0xF4
 #define R7   0b00000111
