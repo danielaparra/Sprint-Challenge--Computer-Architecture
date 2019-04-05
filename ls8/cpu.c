@@ -26,9 +26,15 @@ void cpu_load(struct cpu *cpu, int argc, char** argv)
   
   int address = 0;
   while (fgets(line, 1024, fp) != NULL) {
+    
+
     if (line[0] == '#') {
       continue;
     }
+    // if (line == ) {
+    //   printf("empty line\n");
+    //   continue;
+    // }
     char *binary_string = strndup(line, 8);
     unsigned char binary_val = strtol(binary_string, NULL, 2);
     cpu->ram[address] = binary_val;
@@ -56,7 +62,7 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
       break;
 
     case ALU_CMP:
-      if (regA == regB) {
+      if (cpu->registers[regA] == cpu->registers[regB]) {
 		    cpu->flags[F7_EQUAL] = 1;
 	    } else {
 		    cpu->flags[F7_EQUAL] = 0;
@@ -156,6 +162,22 @@ void cpu_run(struct cpu *cpu)
         break;
       case JMP:
         cpu->PC = cpu->registers[operandA];
+	      break;
+      case JEQ:
+	      if (cpu->flags[F7_EQUAL] == 1) {
+          //printf("equal!\n");
+		      cpu->PC = cpu->registers[operandA];
+	      } else {
+		      cpu->PC += 2;
+	      }
+	      break;
+      case JNE:
+	      if (cpu->flags[F7_EQUAL] == 0) {
+          //printf("not equal!\n");
+		      cpu->PC = cpu->registers[operandA];
+	      } else {
+		      cpu->PC += 2;
+	      }
 	      break;
       case HLT:
         running = 0;
